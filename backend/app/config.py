@@ -2,8 +2,8 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    # Database
-    database_url: str = "postgresql://postgres:postgres@localhost:5432/medium_blog"
+    # Database (use SQLite by default if no .env; set DATABASE_URL for Postgres)
+    database_url: str = "sqlite:///./folio.db"
 
     # JWT
     secret_key: str = "your-secret-key-change-in-production"
@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     access_token_expire_minutes: int = 60
 
     # App
-    project_name: str = "Medium-like Blog API"
+    project_name: str = "Folio Blog API"
     api_v1_prefix: str = "/api/v1"
 
     class Config:

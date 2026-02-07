@@ -19,7 +19,12 @@ export default function RegisterPage() {
     try {
       await doRegister(email, password, username);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Registration failed");
+      const msg = err instanceof Error ? err.message : "Registration failed";
+      setError(
+        msg.toLowerCase().includes("fetch") || msg.toLowerCase().includes("network")
+          ? "Could not reach the server. Start the backend (uvicorn) at http://localhost:8000"
+          : msg
+      );
     } finally {
       setSubmitting(false);
     }

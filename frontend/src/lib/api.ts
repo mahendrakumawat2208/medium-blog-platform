@@ -57,7 +57,13 @@ export async function request<T>(
   const res = await fetch(url, { ...options, headers });
   if (!res.ok) {
     const err = await res.json().catch(() => ({ detail: res.statusText }));
-    throw new Error(Array.isArray(err.detail) ? err.detail[0]?.msg : err.detail || res.statusText);
+    const message =
+      typeof err.detail === "string"
+        ? err.detail
+        : Array.isArray(err.detail) && err.detail[0]
+          ? (err.detail[0].msg || String(err.detail[0]))
+          : res.statusText;
+    throw new Error(message || "Request failed");
   }
   if (res.status === 204) return undefined as T;
   return res.json();

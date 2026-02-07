@@ -1,6 +1,6 @@
-# Medium-like Blog Platform
+# Folio
 
-A full-stack blog platform inspired by Medium: write and publish stories, follow authors, and read a personalized feed.
+A full-stack blog platform: write and publish stories, follow authors, and read a personalized feed.
 
 ## Stack
 
@@ -54,11 +54,11 @@ App runs at **http://localhost:3000**. Set `NEXT_PUBLIC_API_URL=http://localhost
 
 This repo is set up for Git. To push to your GitHub:
 
-1. Create a new repository on GitHub (e.g. `medium-blog-platform`).
+1. Create a new repository on GitHub (e.g. `folio` or `folio-blog`).
 2. Add the remote and push:
 
    ```bash
-   git remote add origin https://github.com/YOUR_USERNAME/medium-blog-platform.git
+   git remote add origin https://github.com/YOUR_USERNAME/folio.git
    git branch -M main
    git push -u origin main
    ```

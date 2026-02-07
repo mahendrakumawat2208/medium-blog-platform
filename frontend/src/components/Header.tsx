@@ -10,7 +10,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-zinc-200 bg-white/95 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/95">
       <div className="mx-auto flex h-14 max-w-4xl items-center justify-between px-4">
         <Link href="/" className="font-serif text-xl font-bold text-zinc-900 dark:text-zinc-50">
-          Medium
+          Folio
         </Link>
         <nav className="flex items-center gap-4">
           {loading ? (

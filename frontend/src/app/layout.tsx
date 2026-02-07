@@ -4,8 +4,8 @@ import { AuthProvider } from "@/context/AuthContext";
 import Header from "@/components/Header";
 
 export const metadata: Metadata = {
-  title: "Medium – Write and share stories",
-  description: "A Medium-like blog platform to read and publish stories.",
+  title: "Folio – Write and share stories",
+  description: "A blog platform to read and publish stories.",
 };
 
 export default function RootLayout({
