@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy import func
 from sqlalchemy.orm import Session
 
 from app.api.deps import get_current_user
@@ -11,9 +12,14 @@ from app.schemas.user import UserCreate, UserResponse
 router = APIRouter(prefix="/auth", tags=["auth"])
 
 
+def _email_match(query_email: str):
+    """Case-insensitive email comparison for SQLite and Postgres."""
+    return func.lower(User.email) == query_email.lower()
+
+
 @router.post("/register", response_model=Token)
 def register(data: UserCreate, db: Session = Depends(get_db)):
-    if db.query(User).filter(User.email == data.email).first():
+    if db.query(User).filter(_email_match(data.email)).first():
         raise HTTPException(status_code=400, detail="Email already registered")
     if db.query(User).filter(User.username == data.username).first():
         raise HTTPException(status_code=400, detail="Username already taken")
@@ -31,7 +37,7 @@ def register(data: UserCreate, db: Session = Depends(get_db)):
 
 @router.post("/login", response_model=Token)
 def login(data: LoginRequest, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.email == data.email).first()
+    user = db.query(User).filter(_email_match(data.email)).first()
     if not user or not verify_password(data.password, user.hashed_password):
         raise HTTPException(status_code=401, detail="Invalid email or password")
     access_token = create_access_token(data={"sub": str(user.id)})

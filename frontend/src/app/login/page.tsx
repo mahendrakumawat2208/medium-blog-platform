@@ -35,11 +35,11 @@ export default function LoginPage() {
         Sign in
       </h1>
       <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-        Welcome back. Sign in to your account.
+        Use the same email and password you used to register.
       </p>
       <form onSubmit={handleSubmit} className="mt-8 space-y-4">
         {error && (
-          <p className="rounded bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950/50 dark:text-red-300">
+          <p className="rounded border border-red-200 bg-red-50 px-3 py-2 text-sm font-medium text-red-700 dark:border-red-800 dark:bg-red-950/50 dark:text-red-300">
             {error}
           </p>
         )}
